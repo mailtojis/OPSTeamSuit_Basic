@@ -1,0 +1,31 @@
+﻿@model IOS
+@{
+    ViewBag.Title = "Recorder Profiler";
+}
+<div class="row">
+    <div class="col-lg-10">
+        <h1>&nbsp;</h1>
+        <div class="card" style="background-color:aliceblue">
+            <div class="card-body">
+                <h2 style="text-align:center">Recorder Profiler</h2>
+                <div style="text-align:center">
+                    <i class="fa fa:user"></i>
+                    @using (Html.BeginForm("RecorderProfile", "RecordProfiler", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                <div>
+                    @Html.Label("Select your JSON")
+                    @Html.TextBox("file", "", new { type = "file", accept = ".json" }) 
+                    <label class="btn btn-primary">
+                        <i class="fa fa-image"></i>Upload and Analyze<input type="submit" style="display: none;" name="image">
+                    </label>
+                    @ViewBag.Message
+                </div>
+                    }
+
+                    <h1>&nbsp;</h1>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </di

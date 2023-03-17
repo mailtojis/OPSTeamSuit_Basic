@@ -1,0 +1,208 @@
+﻿@model List<NewResultModel>
+@{
+    ViewBag.Title = "Recorder Profiler";
+}
+
+<style type="text/css">
+    ol.c {
+        list-style-type: none !important;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card" style="background-color:aliceblue">
+            <div class="card-body">
+                <h2 style="text-align:center">Recorder Profiler</h2>
+                <div style="text-align:center">
+                    <h3>&nbsp;</h3>
+                    <h3>Record Summary</h3>
+                    @if (Model == null)
+                    {
+                        <h3>No Record Summary found for this JSON</h3>
+                    }
+                    else
+                    {
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <table class="table d-sm-table-row table-bordered table-info ">
+                                        @*@foreach (var resultModel in this.Model)
+                                            {
+                                                foreach (var item in resultModel.Data)
+                                                {*@
+                                        @*@if (item == null)
+                                            break;*@
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    @Html.Label("Recording Type")
+                                                </th>
+                                                <td>
+                                                    @*//  @if (item.os != null)
+                                                        @Html.Label(item.os.ToString())*@
+
+                                                    @Html.Label(@ViewData["os"].ToString())
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    @Html.Label("Device Manufacturer")
+                                                </th>
+                                                <td>
+                                                    @*@Html.Label(item.manufacturer.ToString())*@
+                                                    @Html.Label(@ViewData["manufacturer"].ToString())
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    @Html.Label("Device Model")
+                                                </th>
+                                                <td>
+                                                    @*@Html.Label(item.devicemodel.ToString())*@
+                                                    @Html.Label(@ViewData["deviceModel"].ToString())
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    @Html.Label("OS Version")
+                                                </th>
+                                                <td>
+                                                    @*@Html.Label(item.osVersion.ToString())*@
+                                                    @Html.Label(@ViewData["osVersion"].ToString())
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    @Html.Label("Recorder app Version")
+                                                </th>
+                                                <td>
+                                                    @*@if (item.recorderVersion != null)
+                                                        @Html.Label(item.recorderVersion.ToString())*@
+                                                    @Html.Label(@ViewData["appversion"].ToString())
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    @Html.Label("Start Time (GMT)")
+                                                </th>
+                                                <td>
+                                                    @Html.Label(@ViewData["start_time"].ToString())
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    @Html.Label("End Time (GMT)")
+                                                </th>
+                                                <td>     @Html.Label(@ViewData["end_time"].ToString())</td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    @Html.Label("Record Duration(In secs)")
+                                                </th>
+                                                <td>
+
+                                                    @*@Html.Label(item.recordingDuration.ToString())*@
+                                                    @Html.Label(@ViewData["recordingDuration"].ToString()) 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    @Html.Label("Operational Notes")
+                                                </th>
+                                                <td>
+                                                    @*@Html.Label(item.notes.ToString())*@
+                                                    @Html.Label(@ViewData["notes"].ToString())
+                                                </td>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        </tbody>
+                                        @*break;
+                                                }
+                                                break;
+                                            }*@
+                                    </table>
+                                </div>
+
+                                <div class="col-sm">
+                                    <table class="table d-sm-table-row table-bordered table-success ">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    @Html.Label("Other Data")
+                                                </th>
+                                                <th>
+                                                    @Html.Label("Total Occurances")
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                            <tr>
+                                                <td>
+                                                    @Html.Label("GPS Data")
+                                                </td>
+                                                <td>     @Html.Label(@ViewData["GPSData"].ToString())</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    @Html.Label("Sensor Data")
+                                                </td>
+                                                <td>     @Html.Label(@ViewData["SensorData"].ToString())</td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <h3>Captured Beacon Values</h3>
+                    @if (Model == null)
+                    {
+                        <h3>Captured Beacon Values is Empty.</h3>
+                    }
+                    else
+                    { 
+                        <div class="accordion" id="category-accordion">
+                            @foreach (var category in this.Model)
+                            {
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" type="button"
+                                                    data-toggle="collapse" data-target="#category-@category.UUid">
+                                                @category.UUid
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="category-@category.UUid" class="collapse data-parent="#category-accordion">
+                                        <table class="table table-bordered table-hover">
+                                            <thead class="thead-dark">
+                                            <th>Major</th>
+                                            <th>Minors</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        @category.major
+                                                    </td>
+                                                    <td>
+                                                        <ul style="list-style-type:none;">
+                                                            <li>@category.minorList</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </tbody> 
+                                        </table>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

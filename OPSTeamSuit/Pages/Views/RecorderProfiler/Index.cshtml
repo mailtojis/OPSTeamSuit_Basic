@@ -1,0 +1,30 @@
+﻿@page
+
+@model OPSTeamSuit.Pages.Recorder_Profiler.RecorderProfilerModel
+@{
+}
+<div class="text-center"> 
+    <div class="mt-5"></div>
+        <div class="container-fluid ">
+
+            <table style="width:100%;">
+                <tr>
+                <tr></tr>
+                <tr></tr>
+
+                <td>
+                    @using(Html.BeginForm("UploadFile","Upload", FormMethod.Post, new { enctype="multipart/form-data"}))
+                    {
+                    <div>
+                        @Html.TextBox("file", "", new {  type= "file"})
+                        <input type="submit" value="Upload Your Json" />
+                        @ViewBag.Message
+                    </div>
+                    }
+                </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
